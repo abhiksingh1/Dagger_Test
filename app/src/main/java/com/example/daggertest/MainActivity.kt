@@ -16,7 +16,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val userRegistrationService = UserRegistrationService()
+        val emailService = EmailService()
+        val userRepository = UserRepository()
+        val userRegistrationService = UserRegistrationService(userRepository, emailService)
         userRegistrationService.registerUser("abhimanyu@gmail.com", "1234")
     }
 }
