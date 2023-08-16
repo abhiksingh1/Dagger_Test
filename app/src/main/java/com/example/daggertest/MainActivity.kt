@@ -15,8 +15,8 @@ import com.example.daggertest.ui.theme.DaggerTestTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
 
-        }
+        val userRegistrationService = UserRegistrationService()
+        userRegistrationService.registerUser("abhimanyu@gmail.com", "1234")
     }
 }
