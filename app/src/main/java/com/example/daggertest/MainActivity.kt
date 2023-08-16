@@ -11,16 +11,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.daggertest.ui.theme.DaggerTestTheme
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var userRegistrationService: UserRegistrationService
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
          val userRegistrationComponent = DaggerUserRegistrationComponent.builder().build()
-         val userRegistrationService = userRegistrationComponent.getUserRegistrationService()
-         val emailService = userRegistrationComponent.getEmailService()
-
+         userRegistrationComponent.myInject(this)
          userRegistrationService.registerUser("abhimanyu@gmail.com", "1234")
-         emailService.send("abhimanyu@gmail.com", "1234")
+
     }
 }
