@@ -16,9 +16,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val emailService = EmailService()
-        val userRepository = UserRepository()
-        val userRegistrationService = UserRegistrationService(userRepository, emailService)
-        userRegistrationService.registerUser("abhimanyu@gmail.com", "1234")
+         val userRegistrationComponent = DaggerUserRegistrationComponent.builder().build()
+         val userRegistrationService = userRegistrationComponent.getUserRegistrationService()
+         val emailService = userRegistrationComponent.getEmailService()
+
+         userRegistrationService.registerUser("abhimanyu@gmail.com", "1234")
+         emailService.send("abhimanyu@gmail.com", "1234")
     }
 }
